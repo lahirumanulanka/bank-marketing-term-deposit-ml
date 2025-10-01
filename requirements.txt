@@ -1,0 +1,49 @@
+# Core
+pandas
+numpy
+scikit-learn
+scipy
+
+# Visualization
+matplotlib
+seaborn
+plotly
+
+# Modeling Extensions
+xgboost
+lightgbm
+catboost
+
+# Neural Networks
+torch
+
+# Experiment Tracking
+mlflow
+
+# Explainability
+shap
+lime
+
+# Utilities
+pyyaml
+joblib
+tqdm
+rich
+
+# API / Deployment
+fastapi
+uvicorn
+pydantic
+
+# Monitoring
+prometheus-client
+
+# Testing & Quality
+pytest
+pytest-cov
+black
+isort
+flake8
+
+# Optional
+imbalanced-learn
