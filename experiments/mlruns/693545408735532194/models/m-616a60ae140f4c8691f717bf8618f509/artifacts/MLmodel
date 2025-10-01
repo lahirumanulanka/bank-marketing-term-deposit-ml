@@ -1,0 +1,22 @@
+artifact_path: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/models/m-616a60ae140f4c8691f717bf8618f509/artifacts
+flavors:
+  catboost:
+    catboost_version: 1.2.8
+    code: null
+    data: model.cb
+    model_type: CatBoostClassifier
+    save_format: cbm
+  python_function:
+    data: model.cb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.catboost
+    python_version: 3.13.2
+mlflow_version: 3.4.0
+model_id: m-616a60ae140f4c8691f717bf8618f509
+model_size_bytes: 119872
+model_uuid: m-616a60ae140f4c8691f717bf8618f509
+prompts: null
+run_id: 8da21a8bc41a4975911a57ec7cd6517d
+utc_time_created: '2025-10-01 12:39:50.578035'
