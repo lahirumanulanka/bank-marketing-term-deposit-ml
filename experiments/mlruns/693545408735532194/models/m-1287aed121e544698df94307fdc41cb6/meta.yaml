@@ -1,0 +1,10 @@
+artifact_location: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/models/m-1287aed121e544698df94307fdc41cb6/artifacts
+creation_timestamp: 1759338957843
+experiment_id: '693545408735532194'
+last_updated_timestamp: 1759338958970
+model_id: m-1287aed121e544698df94307fdc41cb6
+model_type: null
+name: model
+source_run_id: 4daeeb41747e43cf92950c8983d04efa
+status: 2
+status_message: null

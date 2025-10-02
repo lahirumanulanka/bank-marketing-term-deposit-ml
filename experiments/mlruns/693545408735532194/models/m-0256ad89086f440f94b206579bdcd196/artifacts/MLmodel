@@ -1,0 +1,21 @@
+artifact_path: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/models/m-0256ad89086f440f94b206579bdcd196/artifacts
+flavors:
+  lightgbm:
+    code: null
+    data: model.pkl
+    lgb_version: 4.6.0
+    model_class: lightgbm.sklearn.LGBMClassifier
+  python_function:
+    data: model.pkl
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.lightgbm
+    python_version: 3.13.2
+mlflow_version: 3.4.0
+model_id: m-0256ad89086f440f94b206579bdcd196
+model_size_bytes: 350084
+model_uuid: m-0256ad89086f440f94b206579bdcd196
+prompts: null
+run_id: 9e3ae81a0c9e44cd8d2d2f5fd09e6ec0
+utc_time_created: '2025-10-01 17:14:48.524695'
