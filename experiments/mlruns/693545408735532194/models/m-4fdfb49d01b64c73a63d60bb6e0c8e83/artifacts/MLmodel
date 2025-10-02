@@ -1,0 +1,22 @@
+artifact_path: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/models/m-4fdfb49d01b64c73a63d60bb6e0c8e83/artifacts
+flavors:
+  python_function:
+    data: model.xgb
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.13.2
+  xgboost:
+    code: null
+    data: model.xgb
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: xgb
+    xgb_version: 3.0.5
+mlflow_version: 3.4.0
+model_id: m-4fdfb49d01b64c73a63d60bb6e0c8e83
+model_size_bytes: 416994
+model_uuid: m-4fdfb49d01b64c73a63d60bb6e0c8e83
+prompts: null
+run_id: ec4d637e99b84e65b847a6837b6b8dec
+utc_time_created: '2025-10-01 17:15:52.499065'
