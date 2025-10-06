@@ -1,0 +1,7 @@
+model,accuracy
+Logistic Regression (Retrained Tuned),0.827662037037037
+Random Forest (Retrained Tuned),0.8943287037037037
+XGBoost (Retrained Tuned),0.8747685185185186
+LightGBM (Retrained Tunrained),0.8546875
+CatBoost (Retrained Tuned),0.8583912037037037
+Neural Network (Retrained Tuned),0.8326967592592592
