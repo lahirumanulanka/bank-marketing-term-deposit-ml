@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/e51f9328c6124fb99c9724e0bb2cda30/artifacts
+end_time: 1759756634241
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: e51f9328c6124fb99c9724e0bb2cda30
+run_name: xgboost_retrained_tuned
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759756626671
+status: 3
+tags: []
+user_id: root
