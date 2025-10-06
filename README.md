@@ -9,9 +9,14 @@ This project implements a complete ML pipeline for predicting whether a client w
 ### Key Highlights
 - **Dataset**: Merged UCI Bank Marketing datasets (~86,400 samples, 21 features)
 - **Models**: 6 different ML models (Logistic Regression, Random Forest, XGBoost, LightGBM, CatBoost, Neural Network)
-- **MLflow Tracking**: All experiments tracked and versioned
-- **Interpretability**: SHAP, LIME, and feature importance analysis
-- **Production Ready**: Complete deployment strategy with Docker, Kubernetes, CI/CD
+- **Feature Engineering**: 5 domain-informed features with comprehensive justifications
+- **Class Imbalance**: Handled with SMOTE + class weights, visualized with before/after plots
+- **Outlier Treatment**: Selective capping based on business context (balance, campaign features)
+- **MLflow Tracking**: All experiments tracked with parameters, metrics, and artifacts
+- **Interpretability**: SHAP, LIME, permutation importance with detailed explanations
+- **Error Analysis**: Comprehensive misclassification investigation with 6-subplot visualizations
+- **Production Ready**: Complete deployment strategy (Docker, Kubernetes, CI/CD, monitoring)
+- **Comprehensive Explanations**: Every decision justified with business and technical rationale
 
 ## 🎯 Business Objective
 
@@ -76,45 +81,97 @@ All 8 coursework tasks are implemented in comprehensive Jupyter notebooks:
 - Data saved to `data/raw/` and `data/interim/`
 
 ### ✅ [Notebook 3: Exploratory Data Analysis](notebooks/03_exploratory_data_analysis.ipynb)
-- Comprehensive EDA with 15+ visualizations
-- Missing values analysis and handling strategy
-- Outlier detection using IQR method
-- Class imbalance analysis (~88:12 ratio)
-- **Feature Engineering** - Created 5 new features:
-  - `contact_frequency`: Campaign contact categorization
-  - `previous_campaign_success`: Past interaction outcomes
-  - `age_group`: Life stage segmentation
-  - `has_economic_data`: Data source indicator
-  - `duration_category`: Call length categorization
+- **Comprehensive EDA framework** with detailed explanations
+- 15+ visualization sections covering all aspects
+- **Missing values analysis** with handling strategy justification
+- **Outlier detection AND removal**:
+  - IQR method for systematic detection
+  - **Selective capping** for balance (1st-99th percentile) and campaign (95th percentile)
+  - Preservation of valid outliers with business justification
+- **Class imbalance analysis** (~88:12 ratio with impact assessment)
+- **SMOTE implementation with visualizations**:
+  - Before/after class balance comparison plots
+  - Dataset overview after balancing
+  - Impact analysis on model training
+- **Feature Engineering** - Created 5 new features with detailed justifications:
+  - `contact_frequency`: Campaign contact categorization (customer fatigue)
+  - `previous_campaign_success`: Past interaction outcomes (behavioral prediction)
+  - `age_group`: Life stage segmentation (non-linear age effects)
+  - `has_economic_data`: Data source indicator (temporal context)
+  - `duration_category`: Call length categorization (engagement levels)
+- **Comprehensive preprocessing justification section** covering:
+  - Missing values strategy and rationale
+  - Outlier treatment decisions with business context
+  - Feature engineering domain knowledge basis
+  - Class imbalance handling approach
+  - Train-test split and scaling strategies
 
 ### ✅ [Notebook 4: Model Development](notebooks/04_model_development.ipynb)
-Implemented 6 machine learning models:
-1. **Logistic Regression** (Linear Model) - Baseline with balanced weights
-2. **Random Forest** (Tree-based) - 100 estimators, depth 10
-3. **XGBoost** (Boosting) - Optimized for imbalanced data
-4. **LightGBM** (Boosting) - Fast gradient boosting
-5. **CatBoost** (Boosting) - Automatic categorical handling
-6. **Neural Network** (PyTorch) - 4-layer architecture with dropout
+Implemented **6 machine learning models** with comprehensive justifications:
+1. **Logistic Regression** (Linear Model) 
+   - Baseline, interpretable, regulatory-friendly
+   - Balanced weights for class imbalance
+2. **Random Forest** (Tree-based) 
+   - 100 estimators, depth 10
+   - Robust ensemble, handles non-linearity
+3. **XGBoost** (Boosting) 
+   - State-of-the-art for tabular data
+   - scale_pos_weight for imbalance handling
+4. **LightGBM** (Boosting) 
+   - Fast gradient boosting, efficient training
+   - class_weight='balanced' configuration
+5. **CatBoost** (Boosting) 
+   - Best categorical handling, minimal tuning
+   - Automatic class weight detection
+6. **Neural Network** (PyTorch) 
+   - 4-layer architecture (128-64-32-1) with dropout
+   - Deep learning approach for complex patterns
 
-All models tracked in MLflow with parameters and metrics.
+**Enhanced Content**:
+- **Detailed model selection rationale** based on dataset characteristics
+- **Trade-offs analysis** (interpretability vs performance, speed vs accuracy)
+- **Business alignment** for model choices
+- MLflow tracking for all experiments (parameters, metrics, artifacts)
+- Class imbalance handling (weights + SMOTE)
+- Model serialization and versioning
 
 ### ✅ [Notebook 5: Evaluation & Comparison](notebooks/05_evaluation_and_comparison.ipynb)
-- Multiple metrics: Accuracy, Precision, Recall, F1-Score, ROC-AUC
+- **Comprehensive evaluation framework** with business-aligned metrics
+- **Multiple metrics with explanations**: 
+  - Accuracy, Precision, Recall, F1-Score, ROC-AUC
+  - Business translation of each metric
+  - Cost-benefit analysis for banking context
+- **Enhanced error analysis** with detailed visualizations:
+  - Confusion matrix breakdown with statistics
+  - Class-wise performance analysis
+  - Prediction confidence analysis for errors
+  - False positive/negative detailed analysis
+  - 6 comprehensive visualization subplots
+  - Sample misclassified records investigation
 - Confusion matrices for all models
-- ROC and Precision-Recall curves comparison
-- Error analysis for misclassified samples
-- Hyperparameter tuning with GridSearchCV
-- Threshold optimization for business requirements
-- SMOTE for handling class imbalance
+- **ROC curves** comparison across all models
+- **Precision-Recall curves** for minority class focus
+- **Hyperparameter tuning** with GridSearchCV and cross-validation
+- **Threshold optimization** for business requirements
+- **SMOTE** implementation and impact analysis for class balancing
 
 ### ✅ [Notebook 6: Interpretability & Insights](notebooks/06_interpretability_and_insights.ipynb)
-- Feature importance analysis
-- **SHAP** values for global and local explanations
-- **LIME** for individual prediction explanations
-- Permutation importance
-- Partial dependence plots
-- **Business insights** and actionable recommendations
-- Marketing strategy optimization
+- **Comprehensive interpretability framework** with regulatory context (GDPR, fairness)
+- **Detailed technique explanations** for all methods:
+  - **Feature importance** for tree-based models
+  - **SHAP** values for global and local explanations
+  - **LIME** for local interpretable explanations
+  - **Permutation importance** analysis
+  - **Partial dependence plots** for key features
+- **SHAP Analysis**:
+  - Global explanations (summary plots, bar plots)
+  - Local explanations (waterfall plots for individual predictions)
+  - Directional contributions (positive/negative effects)
+- **Business insights translation framework**:
+  - From technical findings to actionable recommendations
+  - 10+ specific marketing strategy optimizations
+  - Customer segment targeting guidance
+- Ethical considerations (fairness, bias, discrimination prevention)
 
 ### ✅ [Notebook 7: Critical Reflection](notebooks/07_critical_reflection.ipynb)
 - Dataset limitations (temporal, geographic, features)
@@ -129,16 +186,31 @@ All models tracked in MLflow with parameters and metrics.
   - Federated learning for privacy
 
 ### ✅ [Notebook 8: Deployment Strategy](notebooks/08_deployment_strategy.ipynb)
-- Model packaging and serialization
-- **FastAPI** application with health checks
+- **Production architecture diagram** and component breakdown
+- Model packaging and serialization (pickle, ONNX, MLflow)
+- **FastAPI** application with health checks and monitoring endpoints
+  - Technology justification (async support, performance, auto-documentation)
 - **Docker** containerization (Dockerfile + docker-compose)
-- **Kubernetes** deployment manifests
-- **MLflow** model serving
-- Cloud deployment (AWS SageMaker, Azure ML, GCP AI Platform)
+  - Consistency across environments, dependency isolation
+- **Kubernetes** deployment manifests (deployment, service, HPA)
+  - Auto-scaling, self-healing, load balancing capabilities
+- **MLflow** model serving and version control
+- **Cloud deployment comparisons** with detailed examples:
+  - AWS SageMaker (managed ML platform)
+  - Azure ML (Microsoft ML service)
+  - GCP AI Platform (Google ML infrastructure)
+  - Platform selection guidance based on requirements
 - **CI/CD** pipeline with GitHub Actions
-- Monitoring with Prometheus and Grafana
-- A/B testing framework
-- Complete deployment checklist
+  - Automated testing, validation, and deployment
+- **Monitoring strategy** (Prometheus + Grafana)
+  - Infrastructure, model, and business metrics
+  - Alerting framework and drift detection
+- **Versioning & rollback** (semantic versioning, blue-green deployment)
+- **Model drift detection** framework (data drift, concept drift)
+- A/B testing framework for production validation
+- **Security & compliance** (GDPR, encryption, auditing)
+- **Cost optimization** strategies
+- Complete deployment checklist with best practices
 
 ## 🚀 Getting Started
 
