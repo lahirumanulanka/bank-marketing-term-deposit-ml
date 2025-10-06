@@ -36,8 +36,6 @@ htmlcov/
 
 # Prevent accidental large data/model commits
 *.h5
-*.pt
-*.onnx
 *.tar
 *.tar.gz
 *.zip
