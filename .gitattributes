@@ -1,1 +1,6 @@
 models/*.pkl filter=lfs diff=lfs merge=lfs -text
+models/*.pt filter=lfs diff=lfs merge=lfs -text
+reports/figures/*.png filter=lfs diff=lfs merge=lfs -text
+notebooks/catboost_info/** filter=lfs diff=lfs merge=lfs -text
+deployment/catboost_info/** filter=lfs diff=lfs merge=lfs -text
+models/catboost_info/** filter=lfs diff=lfs merge=lfs -text
