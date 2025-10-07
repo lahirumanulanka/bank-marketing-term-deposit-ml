@@ -1,0 +1,5 @@
+metric,model_family,value
+accuracy,logistic,0.8544200340002616
+precision,logistic,0.8486973303312962
+recall,xgboost,1.0
+f1_score,logistic,0.8556049158533027

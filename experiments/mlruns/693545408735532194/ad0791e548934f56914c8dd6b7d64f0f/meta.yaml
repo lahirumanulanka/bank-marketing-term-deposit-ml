@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/ad0791e548934f56914c8dd6b7d64f0f/artifacts
+end_time: 1759752344601
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: ad0791e548934f56914c8dd6b7d64f0f
+run_name: Random Forest Tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759752278472
+status: 3
+tags: []
+user_id: root

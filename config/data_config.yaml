@@ -1,0 +1,66 @@
+raw_data_path: data/raw/bank-additional-full.csv
+original_data_path: dataset/bank-additional/bank-additional-full.csv
+id_column: null
+target_column: y
+positive_class: yes
+categorical_columns:
+  - job
+  - marital
+  - education
+  - default
+  - housing
+  - loan
+  - contact
+  - month
+  - day_of_week
+  - poutcome
+ordinal_mappings:
+  education:
+    unknown: 0
+    illiterate: 0
+    basic.4y: 1
+    basic.6y: 2
+    basic.9y: 3
+    high.school: 4
+    professional.course: 5
+    university.degree: 6
+    doctorate: 7
+
+numeric_columns:
+  - age
+  - campaign
+  - pdays
+  - previous
+  - emp.var.rate
+  - cons.price.idx
+  - cons.conf.idx
+  - euribor3m
+  - nr.employed
+  - duration
+
+boolean_like:
+  - default
+  - housing
+  - loan
+
+train_test_split:
+  test_size: 0.2
+  random_state: 42
+  stratify: true
+
+imbalance_strategy:
+  method: class_weight  # options: class_weight | smote | none
+  smote_k_neighbors: 5
+
+outlier_strategy:
+  method: iqr  # iqr | zscore | none
+  iqr_multiplier: 1.5
+
+feature_engineering:
+  interactions: true
+  polynomial_degree: 2
+  duration_buckets: true
+  recency_flag: true
+
+scaling:
+  method: standard  # standard | robust | minmax

@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/648e440dc2324966a27e5b6b22d552d8/artifacts
+end_time: 1759818332267
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: 648e440dc2324966a27e5b6b22d552d8
+run_name: Logistic Regression Tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759818322133
+status: 3
+tags: []
+user_id: root

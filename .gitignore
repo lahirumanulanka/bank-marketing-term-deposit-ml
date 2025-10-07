@@ -39,4 +39,5 @@ htmlcov/
 *.tar
 *.tar.gz
 *.zip
+*.experiments
 

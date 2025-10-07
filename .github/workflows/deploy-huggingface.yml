@@ -1,0 +1,91 @@
+name: Deploy to HuggingFace Spaces
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'huggingface_space/**'
+      - 'models/**'
+      - '.github/workflows/deploy-huggingface.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install huggingface-hub
+    
+    - name: Validate model files
+      run: |
+        if [ ! -f "models/lightgbm_retrained_tuned.pkl" ]; then
+          echo "Error: Model file not found"
+          exit 1
+        fi
+        if [ ! -f "models/preprocessing/scaler.pkl" ]; then
+          echo "Error: Scaler file not found"
+          exit 1
+        fi
+        if [ ! -f "models/preprocessing/label_encoders.pkl" ]; then
+          echo "Error: Label encoders file not found"
+          exit 1
+        fi
+    
+    - name: Copy model files to HuggingFace Space directory
+      run: |
+        cp models/lightgbm_retrained_tuned.pkl huggingface_space/
+        mkdir -p huggingface_space/preprocessing
+        cp models/preprocessing/scaler.pkl huggingface_space/preprocessing/
+        cp models/preprocessing/label_encoders.pkl huggingface_space/preprocessing/
+    
+    - name: Deploy to HuggingFace Spaces
+      env:
+        HF_TOKEN: ${{ secrets.HF_TOKEN }}
+      run: |
+        cd huggingface_space
+        # Upload to HuggingFace Space
+        python -c "
+        from huggingface_hub import HfApi
+        import os
+        
+        api = HfApi()
+        token = os.environ['HF_TOKEN']
+        
+        # Create or update space
+        try:
+            api.create_repo(
+                repo_id='bank-marketing-prediction',
+                token=token,
+                repo_type='space',
+                space_sdk='gradio'
+            )
+        except Exception as e:
+            print(f'Space might already exist: {e}')
+        
+        # Upload files
+        api.upload_folder(
+            folder_path='.',
+            repo_id='bank-marketing-prediction',
+            repo_type='space',
+            token=token
+        )
+        "
+    
+    - name: Verify deployment
+      run: |
+        echo "Deployment complete!"
+        echo "Space URL: https://huggingface.co/spaces/<your-username>/bank-marketing-prediction"

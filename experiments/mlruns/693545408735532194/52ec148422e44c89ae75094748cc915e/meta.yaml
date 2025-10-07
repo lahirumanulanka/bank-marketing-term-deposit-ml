@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/52ec148422e44c89ae75094748cc915e/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: 52ec148422e44c89ae75094748cc915e
+run_name: bald-mole-477
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759335909121
+status: 1
+tags: []
+user_id: root

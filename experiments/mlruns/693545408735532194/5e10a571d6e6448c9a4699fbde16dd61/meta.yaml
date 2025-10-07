@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/5e10a571d6e6448c9a4699fbde16dd61/artifacts
+end_time: 1759818786109
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: 5e10a571d6e6448c9a4699fbde16dd61
+run_name: CatBoost Tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759818638411
+status: 3
+tags: []
+user_id: root

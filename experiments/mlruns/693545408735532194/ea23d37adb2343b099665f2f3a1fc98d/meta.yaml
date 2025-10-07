@@ -1,0 +1,14 @@
+artifact_uri: /Users/lahirumunasinghe/Documents/DataScience/bank-marketing-term-deposit-ml/notebooks/../experiments/mlruns/693545408735532194/ea23d37adb2343b099665f2f3a1fc98d/artifacts
+end_time: 1759752568997
+entry_point_name: ''
+experiment_id: '693545408735532194'
+lifecycle_stage: active
+run_id: ea23d37adb2343b099665f2f3a1fc98d
+run_name: LightGBM Tuning
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1759752516166
+status: 4
+tags: []
+user_id: root
