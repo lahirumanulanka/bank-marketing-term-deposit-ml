@@ -411,7 +411,7 @@ The model is deployed as both a **Gradio web interface** and **FastAPI REST API*
 ```python
 import requests
 
-url = "https://your-space-name.hf.space/predict"
+url = "https://huggingface.co/spaces/hirumunasinghe/bank-marketing-term-deposit-prediction/predict"
 data = {
     "age": 39,
     "job": "management",
@@ -453,7 +453,7 @@ batch_data = {
     ]
 }
 
-response = requests.post("https://your-space-name.hf.space/predict/batch", json=batch_data)
+response = requests.post("https://huggingface.co/spaces/hirumunasinghe/bank-marketing-term-deposit-prediction/predict/batch", json=batch_data)
 results = response.json()
 ```
 
@@ -487,68 +487,6 @@ huggingface_space/
 2. Upload files from `huggingface_space/` directory
 3. Select Gradio SDK
 4. Space automatically deploys
-
-**Option 2: Git CLI**
-```bash
-cd huggingface_space
-
-# Initialize git (if not already)
-git init
-
-# Add HuggingFace remote
-git remote add hf https://huggingface.co/spaces/<username>/bank-marketing-prediction
-
-# Copy model files (if not already present)
-cp ../models/lightgbm_retrained_tuned.pkl .
-cp -r ../models/preprocessing .
-
-# Deploy (push to HuggingFace Space repository)
-git add .
-git commit -m "Deploy model to HuggingFace Spaces"
-git push hf main
-```
-
-**See Also**:
-- [HuggingFace Space README](huggingface_space/README.md) - Complete API documentation
-- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Detailed deployment instructions
-
----
-
-### 🐳 Local Deployment (Docker)
-
-### 🐳 Local Deployment (Docker)
-
-Run the FastAPI REST API locally with Docker:
-
-```bash
-cd deployment
-docker-compose up -d
-```
-
-**Access:**
-- API Documentation: `http://localhost:8000/docs` (Swagger UI)
-- Alternative docs: `http://localhost:8000/redoc`
-- Health check: `http://localhost:8000/health`
-
-**Example API Call:**
-```python
-import requests
-
-response = requests.post(
-    "http://localhost:8000/predict",
-    json={
-        "age": 30,
-        "job": "admin.",
-        "marital": "single",
-        # ... other features
-    }
-)
-
-print(response.json())
-# {'prediction': 'yes', 'probability': 0.85, 'confidence': 'high'}
-```
-
----
 
 ### ☁️ Cloud Deployment Options
 
