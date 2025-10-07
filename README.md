@@ -4,6 +4,8 @@ Comprehensive end-to-end machine learning project to predict term deposit subscr
 
 ## 📋 Project Overview
 
+**📖 [Complete Project Overview](docs/PROJECT_OVERVIEW.md)** - Comprehensive guide covering the entire ML pipeline from data to deployment.
+
 This project implements a complete ML pipeline for predicting whether a client will subscribe to a term deposit based on direct marketing campaign data from a Portuguese banking institution (2008-2010).
 
 ### Key Highlights
@@ -66,21 +68,27 @@ Predict client subscription to term deposits to:
 
 ## 📚 Complete Task Notebooks
 
-All 8 coursework tasks are implemented in comprehensive Jupyter notebooks:
+All notebooks are implemented with comprehensive explanations and detailed documentation available in the `docs/` folder.
 
 ### ✅ [Notebook 1: Dataset Justification & Literature Review](notebooks/01_dataset_justification_and_literature_review.ipynb)
-- Dataset source and structure documentation
-- Business problem definition and significance
+**📖 [Full Documentation](docs/notebook_01_dataset_justification.md)**
+- Dataset source and structure documentation (UCI Bank Marketing Dataset)
+- Business problem definition and real-world significance
 - Literature survey of 5+ peer-reviewed studies
-- Comparison with existing research
+- Comparison with existing research and research gap identification
+- Comprehensive justification for dataset selection
 
 ### ✅ [Notebook 2: Data Merging & Preprocessing](notebooks/02_data_merging_and_preprocessing.ipynb)
+**📖 [Full Documentation](docs/notebook_02_data_preprocessing.md)**
 - Loading bank-full.csv (45,211 rows) and bank-additional-full.csv (41,188 rows)
-- Column alignment and dataset merging strategy
+- Column alignment and dataset merging strategy with rationale
 - Final merged dataset: 86,399 rows × 21 columns
+- Missing value handling with detailed justifications
+- Data quality assessment and validation
 - Data saved to `data/raw/` and `data/interim/`
 
 ### ✅ [Notebook 3: Exploratory Data Analysis](notebooks/03_exploratory_data_analysis.ipynb)
+**📖 [Full Documentation](docs/notebook_03_exploratory_analysis.md)**
 - **Comprehensive EDA framework** with detailed explanations
 - 15+ visualization sections covering all aspects
 - **Missing values analysis** with handling strategy justification
@@ -107,6 +115,7 @@ All 8 coursework tasks are implemented in comprehensive Jupyter notebooks:
   - Train-test split and scaling strategies
 
 ### ✅ [Notebook 4: Model Development](notebooks/04_model_development.ipynb)
+**📖 [Full Documentation](docs/notebook_04_model_development.md)**
 Implemented **6 machine learning models** with comprehensive justifications:
 1. **Logistic Regression** (Linear Model) 
    - Baseline, interpretable, regulatory-friendly
@@ -120,6 +129,7 @@ Implemented **6 machine learning models** with comprehensive justifications:
 4. **LightGBM** (Boosting) 
    - Fast gradient boosting, efficient training
    - class_weight='balanced' configuration
+   - **Selected for deployment** (ROC-AUC: 0.93)
 5. **CatBoost** (Boosting) 
    - Best categorical handling, minimal tuning
    - Automatic class weight detection
@@ -134,16 +144,9 @@ Implemented **6 machine learning models** with comprehensive justifications:
 - MLflow tracking for all experiments (parameters, metrics, artifacts)
 - Class imbalance handling (weights + SMOTE)
 - Model serialization and versioning
-- **Model explainability and interpretability** section with:
-  - Feature importance comparison across tree-based models
-  - SHAP analysis (global and local explanations)
-  - LIME for individual prediction explanations
-  - Permutation importance (model-agnostic)
-  - Partial dependence plots
-  - Comprehensive feature importance ranking
-  - Business insights and actionable recommendations
 
 ### ✅ [Notebook 5: Evaluation & Comparison](notebooks/05_evaluation_and_comparison.ipynb)
+**📖 [Full Documentation](docs/notebook_05_evaluation.md)**
 - **Comprehensive evaluation framework** with business-aligned metrics
 - **Multiple metrics with explanations**: 
   - Accuracy, Precision, Recall, F1-Score, ROC-AUC
@@ -156,12 +159,12 @@ Implemented **6 machine learning models** with comprehensive justifications:
   - False positive/negative detailed analysis
   - 6 comprehensive visualization subplots
   - Sample misclassified records investigation
-- Confusion matrices for all models
+- Confusion matrices for all models with business interpretation
 - **ROC curves** comparison across all models
 - **Precision-Recall curves** for minority class focus
 - **Hyperparameter tuning** with GridSearchCV and cross-validation
 - **Threshold optimization** for business requirements
-- **SMOTE** implementation and impact analysis for class balancing
+- Final model selection: **LightGBM with ROC-AUC 0.94**
 
 ### ✅ [Notebook 6: Interpretability & Insights](notebooks/06_interpretability_and_insights.ipynb)
 - **Comprehensive interpretability framework** with regulatory context (GDPR, fairness)
@@ -359,34 +362,163 @@ Tracked information:
 
 ## 🚢 Deployment
 
-### HuggingFace Spaces 🤗 (Interactive Web UI)
+### 🤗 HuggingFace Spaces (Live Deployment)
 
-Deploy the model as an interactive Gradio app on HuggingFace Spaces:
+The model is deployed as both a **Gradio web interface** and **FastAPI REST API** on HuggingFace Spaces for public access.
 
-**Live Demo**: `https://huggingface.co/spaces/<your-username>/bank-marketing-prediction`
+#### Live Demo
+**🔗 HuggingFace Space**: `https://huggingface.co/spaces/<your-username>/bank-marketing-prediction`
 
-**Features:**
-- User-friendly web interface
-- Real-time predictions
-- No coding required
-- Free hosting
+#### Features
+- **Interactive Web UI** (Gradio): User-friendly interface for single predictions
+- **REST API** (FastAPI): Programmatic access for applications
+- **Free Hosting**: Automatic scaling and 24/7 availability
+- **Auto-deployment**: Git-based CI/CD pipeline
 
-**Quick Deploy:**
+#### Available Interfaces
+
+##### 1. Gradio Web Interface (`app.py`)
+```python
+# Interactive form-based predictions
+# Features:
+# - Dropdown menus for categorical features
+# - Sliders for numeric inputs
+# - Real-time prediction with confidence scores
+# - Visual result display
+```
+
+**Access**: Visit the Space URL and use the interactive form
+
+##### 2. FastAPI REST API (`api_app.py`)
+
+**Core Endpoints**:
+- `GET /` - API information and available endpoints
+- `GET /health` - Health check and model status
+- `GET /docs` - Interactive API documentation (Swagger UI)
+- `GET /redoc` - Alternative API documentation
+
+**Prediction Endpoints**:
+- `POST /predict` - Single client prediction
+- `POST /predict/batch` - Batch prediction for multiple clients
+
+**Information Endpoints**:
+- `GET /model/info` - Model metadata and performance
+- `GET /features/info` - Detailed feature descriptions
+
+#### API Usage Example
+
+**Single Prediction**:
+```python
+import requests
+
+url = "https://your-space-name.hf.space/predict"
+data = {
+    "age": 39,
+    "job": "management",
+    "marital": "married",
+    "education": "university.degree",
+    "default": "no",
+    "housing": "yes",
+    "loan": "no",
+    "contact": "cellular",
+    "month": "may",
+    "day_of_week": "fri",
+    "duration": 180,
+    "campaign": 2,
+    "pdays": 999,
+    "previous": 0,
+    "poutcome": "nonexistent",
+    "emp_var_rate": 1.1,
+    "cons_price_idx": 93.994,
+    "cons_conf_idx": -36.4,
+    "euribor3m": 4.857,
+    "nr_employed": 5191.0
+}
+
+response = requests.post(url, json=data)
+result = response.json()
+
+print(f"Prediction: {result['prediction']}")
+print(f"Probability: {result['probability_percentage']}%")
+print(f"Confidence: {result['confidence']}")
+```
+
+**Batch Prediction**:
+```python
+batch_data = {
+    "clients": [
+        {/* client 1 data */},
+        {/* client 2 data */},
+        # ... more clients
+    ]
+}
+
+response = requests.post("https://your-space-name.hf.space/predict/batch", json=batch_data)
+results = response.json()
+```
+
+#### Model Performance in Production
+- **Algorithm**: LightGBM (tuned)
+- **ROC-AUC**: 0.94
+- **Precision**: 78%
+- **Recall**: 67%
+- **Training Data**: 86,000+ samples
+- **Features**: 20 input features + 5 engineered
+- **Preprocessing**: SMOTE for class balance, median imputation for missing values
+
+#### Deployment Files (`huggingface_space/`)
+```
+huggingface_space/
+├── app.py                          # Gradio web interface
+├── api_app.py                      # FastAPI REST API
+├── start.py                        # Unified launcher
+├── requirements.txt                # Dependencies
+├── README.md                       # Space documentation
+├── xgboost_retrained_tuned.pkl    # Trained model
+└── preprocessing/                  # Preprocessing artifacts
+    ├── scaler.pkl
+    └── label_encoders.pkl
+```
+
+#### Quick Deploy to HuggingFace Spaces
+
+**Option 1: Web Interface**
+1. Create a new Space on HuggingFace
+2. Upload files from `huggingface_space/` directory
+3. Select Gradio SDK
+4. Space automatically deploys
+
+**Option 2: Git CLI**
 ```bash
 cd huggingface_space
-# Copy model files
+
+# Initialize git (if not already)
+git init
+
+# Add HuggingFace remote
+git remote add hf https://huggingface.co/spaces/<username>/bank-marketing-prediction
+
+# Copy model files (if not already present)
 cp ../models/lightgbm_retrained_tuned.pkl .
 cp -r ../models/preprocessing .
 
 # Deploy (push to HuggingFace Space repository)
-git push
+git add .
+git commit -m "Deploy model to HuggingFace Spaces"
+git push hf main
 ```
 
-See [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) for detailed instructions.
+**See Also**:
+- [HuggingFace Space README](huggingface_space/README.md) - Complete API documentation
+- [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) - Detailed deployment instructions
 
-### FastAPI REST API
+---
 
-Local deployment with Docker:
+### 🐳 Local Deployment (Docker)
+
+### 🐳 Local Deployment (Docker)
+
+Run the FastAPI REST API locally with Docker:
 
 ```bash
 cd deployment
@@ -416,7 +548,9 @@ print(response.json())
 # {'prediction': 'yes', 'probability': 0.85, 'confidence': 'high'}
 ```
 
-### Cloud Deployment Options
+---
+
+### ☁️ Cloud Deployment Options
 
 **AWS SageMaker:**
 ```python
@@ -451,6 +585,67 @@ kubectl apply -f deployment/kubernetes/
 - **Alerting**: Automated alerts for model degradation
 
 Access Grafana: `http://localhost:3000` (admin/admin)
+
+---
+
+## 📚 Complete Documentation
+
+### Notebook Documentation
+Comprehensive markdown documentation available for all notebooks in the `docs/` folder:
+
+1. **[Dataset Justification & Literature Review](docs/notebook_01_dataset_justification.md)**
+   - Dataset selection rationale
+   - Business problem definition
+   - Literature survey (5+ peer-reviewed studies)
+   - Research gap identification
+   - Feature categories explanation
+
+2. **[Data Merging & Preprocessing](docs/notebook_02_data_preprocessing.md)**
+   - Dataset merging strategy
+   - Missing value handling approaches
+   - Data quality assessment
+   - Initial feature engineering
+   - Validation procedures
+
+3. **[Exploratory Data Analysis](docs/notebook_03_exploratory_analysis.md)**
+   - Comprehensive EDA framework
+   - Univariate and multivariate analysis
+   - Outlier detection and handling
+   - Class imbalance analysis with SMOTE
+   - Feature engineering (5 new features)
+   - Correlation analysis
+
+4. **[Model Development](docs/notebook_04_model_development.md)**
+   - Model selection rationale (6 algorithms)
+   - Training pipeline with MLflow
+   - Class imbalance handling strategies
+   - Model serialization
+   - Feature importance analysis
+
+5. **[Evaluation & Comparison](docs/notebook_05_evaluation.md)**
+   - Comprehensive metrics framework
+   - ROC and Precision-Recall curves
+   - Error analysis and misclassification investigation
+   - Hyperparameter tuning with GridSearchCV
+   - Threshold optimization for business goals
+   - Final model selection
+
+### Additional Documentation
+- **[HuggingFace Space README](huggingface_space/README.md)** - API documentation and usage
+- **[Project Summary](PROJECT_SUMMARY.md)** - Implementation overview and statistics
+- **[Enhancements](ENHANCEMENTS.md)** - Detailed enhancement summary
+
+### Key Features Explained
+
+**What Makes This Documentation Comprehensive:**
+- ✅ **Full Explanations**: Every decision justified with business and technical rationale
+- ✅ **Visual Learning**: Diagrams, plots, and code examples throughout
+- ✅ **Practical Examples**: Real-world use cases and implementation patterns
+- ✅ **Business Translation**: Technical concepts explained in business terms
+- ✅ **Step-by-Step Guides**: Clear instructions for reproduction
+- ✅ **Best Practices**: Industry-standard approaches highlighted
+
+---
 
 ## 🤝 Contributing
 
