@@ -367,7 +367,7 @@ Tracked information:
 The model is deployed as both a **Gradio web interface** and **FastAPI REST API** on HuggingFace Spaces for public access.
 
 #### Live Demo
-**🔗 HuggingFace Space**: `https://huggingface.co/spaces/<your-username>/bank-marketing-prediction`
+**🔗 HuggingFace Space**: `https://huggingface.co/spaces/hirumunasinghe/bank-marketing-term-deposit-prediction`
 
 #### Features
 - **Interactive Web UI** (Gradio): User-friendly interface for single predictions
