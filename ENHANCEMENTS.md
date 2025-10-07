@@ -282,7 +282,7 @@ This document summarizes the comprehensive enhancements made to the Bank Marketi
 - ✅ **Advantages and limitations** of each technique
 - ✅ **From technical to actionable** framework
 
-**Location**: Notebook 06, comprehensive interpretability framework added
+**Location**: Notebook 04, comprehensive interpretability framework added (integrated into model development notebook)
 
 ---
 

@@ -134,6 +134,14 @@ Implemented **6 machine learning models** with comprehensive justifications:
 - MLflow tracking for all experiments (parameters, metrics, artifacts)
 - Class imbalance handling (weights + SMOTE)
 - Model serialization and versioning
+- **Model explainability and interpretability** section with:
+  - Feature importance comparison across tree-based models
+  - SHAP analysis (global and local explanations)
+  - LIME for individual prediction explanations
+  - Permutation importance (model-agnostic)
+  - Partial dependence plots
+  - Comprehensive feature importance ranking
+  - Business insights and actionable recommendations
 
 ### ✅ [Notebook 5: Evaluation & Comparison](notebooks/05_evaluation_and_comparison.ipynb)
 - **Comprehensive evaluation framework** with business-aligned metrics

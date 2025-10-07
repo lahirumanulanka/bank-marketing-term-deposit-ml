@@ -92,6 +92,16 @@ All notebooks are production-ready with comprehensive implementations:
 - MLflow integration for all experiments
 - Class imbalance handling (weights + SMOTE)
 - Model serialization and versioning
+- **Comprehensive interpretability framework** integrated after model training:
+  - Feature importance comparison (RF, XGBoost, LightGBM, CatBoost)
+  - SHAP analysis (global summary plots, local waterfall explanations)
+  - LIME for individual prediction explanations
+  - Permutation importance (model-agnostic)
+  - Partial dependence plots for top features
+  - Comprehensive feature importance ranking across all methods
+  - Business insights translation (10+ actionable recommendations)
+  - Marketing strategy optimization
+  - Ethical considerations (fairness, bias, discrimination)
 
 #### Notebook 5: Evaluation & Comparison (Enhanced)
 - **Comprehensive evaluation framework** with business-aligned metrics
@@ -113,26 +123,6 @@ All notebooks are production-ready with comprehensive implementations:
 - **SMOTE implementation** for class balancing
 - Comprehensive model comparison framework with tables and plots
 - **Business-driven evaluation** focusing on operational metrics
-
-#### Notebook 6: Interpretability & Insights (Enhanced)
-- **Comprehensive interpretability framework** with regulatory context
-- **Detailed technique explanations**:
-  - Feature importance (tree-based models)
-  - SHAP values (global and local explanations)
-  - LIME (local interpretable explanations)
-  - Permutation importance
-  - Partial dependence plots
-- **SHAP Analysis**:
-  - Global explanations (summary plots, bar plots)
-  - Local explanations (waterfall plots)
-  - Directional contributions (positive/negative effects)
-- **LIME** for individual predictions
-- Permutation importance analysis
-- Partial dependence plots for key features
-- **Business insights translation** (10+ actionable recommendations)
-- **From technical to actionable framework**
-- Marketing strategy optimization
-- Ethical considerations (fairness, bias, discrimination)
 
 #### Notebook 7: Critical Reflection (14KB)
 **Dataset Limitations**:
