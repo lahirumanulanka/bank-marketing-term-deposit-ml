@@ -195,27 +195,46 @@ Implemented **6 machine learning models** with comprehensive justifications:
 
 ### ✅ [Notebook 8: Deployment Strategy](notebooks/08_deployment_strategy.ipynb)
 - **Production architecture diagram** and component breakdown
+- **HuggingFace Spaces deployment** 🤗
+  - Gradio web interface for interactive predictions
+  - Free hosting with auto-scaling
+  - Git-based deployment workflow
+  - Public accessibility for demos
 - Model packaging and serialization (pickle, ONNX, MLflow)
-- **FastAPI** application with health checks and monitoring endpoints
+- **FastAPI REST API** application with endpoints:
+  - Health checks and model info
+  - Prediction endpoint with validation
   - Technology justification (async support, performance, auto-documentation)
 - **Docker** containerization (Dockerfile + docker-compose)
   - Consistency across environments, dependency isolation
+  - Multi-service orchestration (API + Monitoring)
 - **Kubernetes** deployment manifests (deployment, service, HPA)
   - Auto-scaling, self-healing, load balancing capabilities
 - **MLflow** model serving and version control
 - **Cloud deployment comparisons** with detailed examples:
+  - HuggingFace Spaces (free, easy deployment)
   - AWS SageMaker (managed ML platform)
   - Azure ML (Microsoft ML service)
   - GCP AI Platform (Google ML infrastructure)
   - Platform selection guidance based on requirements
 - **CI/CD** pipeline with GitHub Actions
   - Automated testing, validation, and deployment
+  - Continuous integration workflow
+  - HuggingFace Spaces auto-deployment
 - **Monitoring strategy** (Prometheus + Grafana)
   - Infrastructure, model, and business metrics
   - Alerting framework and drift detection
+  - Data drift detection (KS test, Chi-square test)
+  - Concept drift detection
 - **Versioning & rollback** (semantic versioning, blue-green deployment)
-- **Model drift detection** framework (data drift, concept drift)
-- A/B testing framework for production validation
+  - Model versioning (1.0.0)
+  - MLflow model registry
+  - Rollback procedures
+- **Model monitoring implementation**
+  - Data drift detection framework
+  - Concept drift detection
+  - Performance tracking
+  - Structured logging
 - **Security & compliance** (GDPR, encryption, auditing)
 - **Cost optimization** strategies
 - Complete deployment checklist with best practices
@@ -340,15 +359,64 @@ Tracked information:
 
 ## 🚢 Deployment
 
-### Local Deployment
+### HuggingFace Spaces 🤗 (Interactive Web UI)
+
+Deploy the model as an interactive Gradio app on HuggingFace Spaces:
+
+**Live Demo**: `https://huggingface.co/spaces/<your-username>/bank-marketing-prediction`
+
+**Features:**
+- User-friendly web interface
+- Real-time predictions
+- No coding required
+- Free hosting
+
+**Quick Deploy:**
 ```bash
-cd deployment
-docker-compose up
+cd huggingface_space
+# Copy model files
+cp ../models/lightgbm_retrained_tuned.pkl .
+cp -r ../models/preprocessing .
+
+# Deploy (push to HuggingFace Space repository)
+git push
 ```
 
-Access API at: `http://localhost:8000/docs` (FastAPI Swagger UI)
+See [Deployment Guide](docs/DEPLOYMENT_GUIDE.md) for detailed instructions.
 
-### Cloud Deployment
+### FastAPI REST API
+
+Local deployment with Docker:
+
+```bash
+cd deployment
+docker-compose up -d
+```
+
+**Access:**
+- API Documentation: `http://localhost:8000/docs` (Swagger UI)
+- Alternative docs: `http://localhost:8000/redoc`
+- Health check: `http://localhost:8000/health`
+
+**Example API Call:**
+```python
+import requests
+
+response = requests.post(
+    "http://localhost:8000/predict",
+    json={
+        "age": 30,
+        "job": "admin.",
+        "marital": "single",
+        # ... other features
+    }
+)
+
+print(response.json())
+# {'prediction': 'yes', 'probability': 0.85, 'confidence': 'high'}
+```
+
+### Cloud Deployment Options
 
 **AWS SageMaker:**
 ```python
@@ -368,6 +436,11 @@ Model.deploy(workspace=ws, name='bank-marketing-service')
 ```bash
 # See notebook 08 for complete commands
 gcloud ai-platform versions create v1 --model=bank_marketing
+```
+
+**Kubernetes:**
+```bash
+kubectl apply -f deployment/kubernetes/
 ```
 
 ## 📊 Monitoring & Observability
