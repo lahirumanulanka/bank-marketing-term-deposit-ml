@@ -370,11 +370,10 @@ bank-marketing-term-deposit-ml/
 │
 ├── notebooks/              # 5 Jupyter notebooks (01-05)
 ├── docs/                   # 5 comprehensive markdown guides
-│   ├── notebook_01_dataset_justification.md
-│   ├── notebook_02_data_preprocessing.md
-│   ├── notebook_03_exploratory_analysis.md
-│   ├── notebook_04_model_development.md
-│   └── notebook_05_evaluation.md
+│   ├── notebook_01_data_preprocessing.md
+│   ├── notebook_02_exploratory_analysis.md
+│   ├── notebook_03_model_development.md
+│   └── notebook_04_evaluation.md
 │
 ├── huggingface_space/      # Deployed model (Gradio + FastAPI)
 │   ├── app.py
